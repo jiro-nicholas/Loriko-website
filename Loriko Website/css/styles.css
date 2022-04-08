@@ -1,0 +1,428 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+/* This is where the var(custom color proprties will be) */
+:root {
+  --primary-color: #047aed;
+  --secondary-color: #1c3fa8;
+  --dark-color: #002240;
+  --light-color: #f4f4f4;
+  --success-color: #5cb85c;
+  --error-color: #d9534f;
+  
+
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: "Lato", sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+h1,
+h2 {
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 10px 0;
+}
+p {
+  margin: 10px 0;
+}
+img {
+  width: 100%;
+}
+
+code, pre{
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.hidden{
+  visibility: hidden;
+  height: 0;
+}
+/* navbar */
+.navbar {
+  /* var(--primary-color) is the custom property that we define, it makes assigning things easier. */
+  background-color: var(--primary-color);
+  color: #fff;
+  height: 70px;
+}
+.navbar .flex {
+  /* if flex is in the navbar then the style should occur */
+  justify-content: space-between;
+}
+.navbar ul {
+  /* this is for the list items to align horizontally in a row */
+  display: flex;
+}
+.navbar a {
+  color: #fff;
+  padding: 10px;
+  margin: 0 5px;
+}
+.navbar a:hover {
+  cursor: pointer;
+  border-bottom: 2px #fff solid;
+}
+
+/* Showcase */
+.showcase {
+  height: 400px;
+  background-color: var(--primary-color);
+  color: #fff;
+  position: relative;
+}
+
+.showcase h1 {
+  font-size: 40px;
+}
+
+.showcase p {
+  margin: 20px 0;
+}
+
+.showcase .grid {
+  grid-template-columns: 55% 45%;
+  /* widen the gap */
+  gap: 30px;
+  /* the overflow property, is to remove the scroll bar because the width of the item makes it go past the container  */
+  overflow: visible;
+}
+
+.showcase-text{
+  /* this is where we are apply the animation to */
+    animation: slideInFromLeft 1s ease-in;
+}
+
+.showcase-form {
+  position: relative;
+  top: 60px;
+  /* by default the height will give the webpage a scrollbar, but it can be fixed using overflow: visible/hidden; */
+  height: 350px;
+  /* makes the card smaller */
+  width: 400px;
+  /* additional padding */
+  padding: 40px;
+  /* the z-index makes sure the cad is always in front */
+  z-index: 100;
+  justify-self: flex-end;
+  animation: slideInFromRight 1s ease-in;
+}
+
+.showcase-form .form-control {
+  margin: 30px 0;
+}
+/* this targets the inputs we want (aim in doing this is to avoid the submit button) */
+.showcase-form input[type="text"],
+.showcase-form input[type="email"] {
+  border: 0;
+  border-bottom: 1px solid #b4becb;
+  width: 100%;
+  padding: 3px;
+  font-size: 16px;
+}
+
+.showcase-form input:focus {
+  /* this removes the border box outline */
+  outline: none;
+}
+.showcase::before,
+.showcase::after {
+  /* when you use either pseudo selector classes ::before and  ::after, you have to have  (content property- content:) */
+  content: "";
+  position: absolute;
+  height: 100px;
+  /* to design the slant on the webpage */
+  bottom: -70px;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  transform: skewY(-3deg);
+  /* to make sure the slant works in all browsers, we add our prefix verisons. webkit is for chrome and safari browsers */
+  -webkit-transform: skewY(-3deg);
+  /* this is for mozilla browsers */
+  -moz-transform: skewY(-3deg);
+  /* microsft browsers/ internet explorers  */
+  -ms-transform: skewY(-3deg);
+}
+
+/* Stats */
+.stats{
+    /* this pushes down everything, and prevents the slant from blocking them */
+    padding-top: 100px;
+    animation: slideInFromBottom 1s ease-in;
+}
+
+.stats-heading{
+    max-width: 500px;
+    /* this will put the heading in the middle. an alternative to (text-align:center) */
+    margin: auto;
+}
+
+.stats .grid h3{
+    font-size: 35px;
+}
+.stats .grid p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Cli */
+.cli .grid{
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows:repeat(2,1fr) ;
+}
+.cli .grid > *:first-child
+/* what this means is that, if we look at the cli grid (whatever the first child is) that is what this is targeting */
+{
+grid-column: 1 / span 2 ;
+/* or grid-column: 1 / 3 */
+grid-row: 1/ span 2;
+/* or grid-row: 1 / 3 */
+}
+
+/* Cloud */
+.cloud .grid{
+    grid-template-columns: 4fr 3fr;
+}
+
+/* Languages */
+.languages .flex{
+  /* makes the row responsive */
+  flex-wrap: wrap;
+}
+
+.languages .card{
+  text-align: center;
+  margin: 18px 10px 40px;
+  /* for the transition to have a smoother effect */
+  transition: transform 0.2s ease-in ;
+}
+
+.languages .card h4{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.languages .card:hover{
+  /* translateY moves it along the Y-axis (up or down) */
+  transform: translateY(-15px);
+}
+
+/* Features */
+.features-head img{
+  /* the server image is set to 100% by default, so to make it smaller, we target the img in the features-head div class */
+  width: 200px;
+  /* cus we used grid for this, its too close apart. so for us to give it space, (we use justify-self) */
+  justify-self: flex-end;
+}
+
+.features-sub-head img{
+  width: 300px;
+  justify-self: flex-end;
+}
+
+.features-main .card > i{
+  /* adding a margin to the direct/initial icon */
+  margin-right: 20px;
+}
+
+.features-main .grid{
+  padding: 30px;
+  
+}
+.features-main .grid :nth-of-type(1){
+  grid-column: 1/4;
+}
+.features-main .grid :nth-of-type(2){
+ /* also grid-column: 1 / span 2 */
+  grid-column: 1/3;
+}
+
+/* Docs */
+.docs-head img{
+  /* the server image is set to 100% by default, so to make it smaller, we target the img in the features-head div class */
+  width: 200px;
+  /* cus we used grid for this, its too close apart. so for us to give it space, (we use justifu-self) */
+  justify-self: flex-end;
+}
+
+.docs-main h3{
+  margin: 20px 0;
+}
+
+.docs-main .grid{
+  grid-template-columns: 1fr 2fr;
+  /* align-items aim here is to align both of the grid columns at the top */
+  align-items: flex-start;
+}
+
+.docs-main nav li{
+  font-size: 17px;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px #ccc solid;
+}
+
+.docs-main nav ul li a{
+  color: #333;
+}
+
+.docs-main a:hover{
+  font-weight: bold;
+}
+
+/* footer */
+
+.bg-primary a, .btn-primary a,
+.bg-secondary a, .btn-secondary a,
+.bg-dark a, .btn-dark a,
+.bg-light a, .btn-light a{
+color: #fff;
+}
+
+.footer .social a{
+    margin: 0 10px;
+}
+
+/* Animations */
+/* we are going to animate using keyframes, basicalyy slide in certain contents from all directions */
+@keyframes slideInFromLeft {
+  /* at 0% slide in from x-axis (Horizontal) */
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+@keyframes slideInFromRight {
+  /* at 0% slide in from y-axis (Vertical) */
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  /* at 0% slide in from x */
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+@keyframes slideInFromBottom {
+  /* at 0% slide in from x */
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+
+/* Tablets and Under */
+@media(max-width: 768px) {
+    /* firstly we are adressing the grids, we want it to be stacked so single column grids instead of 2 or 3 columns we have*/
+    .grid,
+    .showcase .grid,
+    .stats .grid,
+    .cli .grid,
+    .cloud .grid,
+    .features-main .grid,
+    .docs-main .grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+
+
+    .showcase {
+        /* the original height is 400px, so we change the height to auto, so it takes up the height of the container */
+        height: auto;
+    }
+
+    .showcase-text{
+        text-align: center;
+        margin-top: 40px;
+        /* Animation */
+        animation: slideInFromTop 1s ease-in;
+    }
+
+    .showcase-form{
+        /* this centers the form, justify-self is a flexbox property that focuses only on itself */
+        justify-self: center;
+        margin: auto;
+        animation: slideInFromBottom 1s ease-in;
+    }
+
+    .cli .grid > *:first-child{
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .features-head,
+    .features-sub-head,
+    .docs-head{
+      text-align: center;
+    }
+
+    .features-head img,
+    .features-sub-head img,
+    .docs-head img{
+      /* aim here is to center align the images in these sections */
+      justify-self: center;
+    }
+
+    .features-main .grid >*:first-child,
+    .features-main.grid >*:nth-child(2){
+      /* this targets both the first and 2nd child grid items and changes them to contain only 1 column */
+      grid-column: 1;
+    }
+}
+
+
+/* Mobile */
+@media(max-width: 500px) {
+    .navbar{
+        /* originally 70px (aim is to put the menus under the logo) */
+        height: 110px;
+    }
+
+    .navbar .flex{
+        /* its a row by default, so we are changing it to column */
+        flex-direction: column;
+    }
+
+    .navbar ul{
+        padding: 10px;
+        /* gives it a transparent background */
+        background-color: rgba(0,0,0,0.1);
+    }
+
+}
